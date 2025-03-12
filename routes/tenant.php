@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\Tenant\MenuController;
 use App\Http\Middleware\SetTenantView;
 use Illuminate\Support\Facades\Route;
 use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
@@ -26,10 +27,8 @@ Route::middleware([
     SetTenantView::class
 ])->group(function () {
     Route::get('/', function () {
-        return 'This is your multi-tenant application. The id of the current tenant is ' . tenant('id');
+        return redirect('/menu');
     });
 
-    Route::get('/menu', function () {
-        return view(tenant('id').'-views' . '.index');
-    });
+    Route::get('/menu', [MenuController::class, 'index'])->name('menu');
 });
