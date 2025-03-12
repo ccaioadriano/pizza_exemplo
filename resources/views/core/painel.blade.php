@@ -1,6 +1,13 @@
 @extends('layouts.app')
 @section('main')
     <div class="container">
+
+        @if(session('success'))
+            <div class="bg-green-500 text-white p-3 rounded-md mb-4">
+                {{ session('success') }}
+            </div>
+        @endif
+
         <div class="row">
             <!-- Sidebar -->
             <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
@@ -11,6 +18,10 @@
                             <a class="nav-link active" href="#">
                                 Gerenciar Tenancies
                             </a>
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button>Logout</button>
+                            </form>
                         </li>
                     </ul>
                 </div>
@@ -21,7 +32,7 @@
                 <div
                     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="h2">Lista de Tenants</h1>
-                    <a href="#" class="btn btn-primary">Novo Tenant</a>
+                    <a href="{{ route('tenants.create') }}" class="btn btn-primary">Novo Tenant</a>
                 </div>
 
                 <!-- Table -->
@@ -29,28 +40,24 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th>Nome</th>
+                                <th>Nome (dominio)</th>
+                                <th>Razão Social</th>
                                 <th>Domínio</th>
-                                <th>Status</th>
+                                <th>Tipo de estabelecimento</th>
+                                <th>Plano</th>
                                 <th>Ações</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @php
-                                $mockTenants = [
-                                    ['id' => 1, 'name' => 'Legítimo', 'domain' => 'legitimo.localhost', 'active' => true],
-                                    ['id' => 2, 'name' => 'Foo', 'domain' => 'foo.localhost', 'active' => false],
-                                    ['id' => 3, 'name' => 'Bar', 'domain' => 'bar.localhost', 'active' => true],
-                                ];
-                            @endphp
+                           
 
-                            @foreach ($mockTenants as $tenant)
+                            @foreach ($tenants as $tenant)
                                 <tr>
-                                    <td>{{ $tenant['id'] }}</td>
-                                    <td>{{ $tenant['name'] }}</td>
-                                    <td>{{ $tenant['domain'] }}</td>
-                                    <td>{{ $tenant['active'] ? 'Ativo' : 'Inativo' }}</td>
+                                    <td>{{ $tenant->id }}</td>
+                                    <td>{{ $tenant->name }}</td>
+                                    <td>{{ $tenant->domains()->first()->domain }}</td>
+                                    <td>{{ $tenant->tipoEstabelecimento?->descricao ?? 'Não informado'}}</td>
+                                    <td>Grátis</td>
                                     <td>
                                         <a href="#" class="btn btn-sm btn-warning">Editar</a>
                                         <a href="#" class="btn btn-sm btn-danger">Excluir</a>

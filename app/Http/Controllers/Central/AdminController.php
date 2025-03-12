@@ -11,7 +11,30 @@ class AdminController extends Controller
 {
     public function index()
     {
+        return view('core.painel', ['tenants' => Tenant::all()]);
+    }
 
-        return view('core.dashboard', ['tenants' => Tenant::all()]);
+
+    public function formTenant(Request $request){
+        return view('core.criar-cliente');
+    }    
+
+    public function storeTenant(Request $request)
+    {
+        $tenant = Tenant::create([
+            'id' => $request->cliente,
+            'razao_social' => $request->razaoSocial,
+        ]);
+
+        $domain = config('tenancy.tenant.default_domain');
+
+        $tenant->domains()->create([
+            'domain' => $tenant->id . '.' . $domain,
+            'tenant_id' => $tenant->id
+        ]);
+
+        session()->flash('success', 'Cliente criado com sucesso!');
+
+        return redirect()->back();
     }
 }

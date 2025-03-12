@@ -20,7 +20,7 @@ class Tenant extends BaseTenant implements TenantWithDatabase
         ];
     }
 
-    public function tipo(): BelongsTo
+    public function tipoEstabelecimento(): BelongsTo
     {
         return $this->belongsTo(TipoEstabelecimento::class, 'tipo_estabelecimento_id', 'id');
     }
