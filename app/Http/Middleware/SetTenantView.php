@@ -25,7 +25,7 @@ class SetTenantView
 
         // Definindo o nome do layout e do diretório de views com base no tenant
         $tenantLayout = 'layouts.' . $tenant->id;
-        $tenantViewFolder = $tenant->id . '-views';
+        $tenantViewFolder = 'tenants.' . $tenant->id . '-views';
 
         // Compartilhando as variáveis globalmente com as views do Laravel
         View::share('tenant_layout', $tenantLayout);

@@ -10,6 +10,6 @@ class MenuController extends Controller
 {
     public function index(Request $request)
     {
-        return view(tenant('id') . '-views' . '.index');
+        return view('tenants.' . tenant('id') . '-views' . '.index');
     }
 }
