@@ -35,9 +35,18 @@ class AdminController extends Controller
             'tenant_id' => $tenant->id
         ]);
 
-        // Diretório base para o tenant
-        $tenantPath = resource_path("views/tenants/{$tenant->id}-views");
-        $layoutPath = resource_path("views/layouts/{$tenant->id}.blade.php");
+        // Diretórios base para o tenant
+        $this->geraTenantViews($tenant->id);
+
+        session()->flash('success', 'Cliente criado com sucesso e arquivos gerados!');
+
+        return redirect('/painel');
+    }
+
+    private function geraTenantViews($tenantId)
+    {
+        $tenantPath = resource_path("views/tenants/{$tenantId}-views");
+        $layoutPath = resource_path("views/layouts/{$tenantId}.blade.php");
         $indexPath = $tenantPath . "/index.blade.php";
 
         // Criar diretórios, se não existirem
@@ -53,9 +62,6 @@ class AdminController extends Controller
         if (!File::exists($indexPath)) {
             File::put($indexPath, 'ola');
         }
-        session()->flash('success', 'Cliente criado com sucesso e arquivos gerados!');
-
-        return redirect('/painel');
     }
 
 
