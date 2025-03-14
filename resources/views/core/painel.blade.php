@@ -3,7 +3,7 @@
     <div class="container">
 
         @if(session('success'))
-            <div class="bg-green-500 text-white p-3 rounded-md mb-4">
+            <div class="bg-green-500 p-3 rounded-md mb-4">
                 {{ session('success') }}
             </div>
         @endif
@@ -54,8 +54,8 @@
                             @foreach ($tenants as $tenant)
                                 <tr>
                                     <td>{{ $tenant->id }}</td>
-                                    <td>{{ $tenant->name }}</td>
-                                    <td>{{ $tenant->domains()->first()->domain }}</td>
+                                    <td>{{ $tenant->razao_social }}</td>
+                                    <td>{{ $tenant->domains()->first()->domain ?? '' }}</td>
                                     <td>{{ $tenant->tipoEstabelecimento?->descricao ?? 'Não informado'}}</td>
                                     <td>Grátis</td>
                                     <td>

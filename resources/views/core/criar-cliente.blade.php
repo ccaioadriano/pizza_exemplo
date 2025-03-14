@@ -32,7 +32,7 @@
 
                             <div class="mb-3">
                                 <label for="razaoSocial" class="form-label">Razão Social</label>
-                                <input type="text" id="razaoSocial" name="razaoSocial"
+                                <input type="text" id="razaoSocial" name="razao_social"
                                     class="form-control @error('razaoSocial') is-invalid @enderror" required>
                                 @error('razaoSocial')
                                     <div class="invalid-feedback">{{ $message }}</div>

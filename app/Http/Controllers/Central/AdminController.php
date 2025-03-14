@@ -25,7 +25,7 @@ class AdminController extends Controller
     {
         $tenant = Tenant::create([
             'id' => $request->cliente,
-            'razao_social' => $request->razaoSocial,
+            'razao_social' => $request->razao_social,
         ]);
 
         $domain = config('tenancy.tenant.default_domain');

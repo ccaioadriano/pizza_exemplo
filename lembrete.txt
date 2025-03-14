@@ -1,0 +1,2 @@
+verificar a possibilidade de armazenar as informações 
+do layout do cliente na propria tabela ou em algum lugar para não poluir o repositório views e layouts para cada cliente

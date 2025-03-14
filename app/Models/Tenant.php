@@ -12,11 +12,13 @@ class Tenant extends BaseTenant implements TenantWithDatabase
 {
     use HasDatabase, HasDomains;
 
+    //colunas especificadas nesta função ficaram definidas na tabela tenants
     public static function getCustomColumns(): array
     {
         return [
-            'id',  // Sempre manter o "id"
-            'tipo_estabelecimento_id' // Essa coluna estará separada, e não dentro de "data"
+            'id',
+            'tipo_estabelecimento_id' ,
+            'razao_social'
         ];
     }
 
