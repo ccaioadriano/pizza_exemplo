@@ -11,13 +11,13 @@
     <div class="col-lg-3 col-6">
         <div class="small-box bg-info">
             <div class="inner">
-                <h3>150</h3>
+                <h3>{{ \App\Models\Tenant::count() }}</h3>
                 <p>Novos Clientes</p>
             </div>
             <div class="icon">
                 <i class="fas fa-user-plus"></i>
             </div>
-            <a href="/admin/clientes" class="small-box-footer">
+            <a href="/admin/meus-clientes" class="small-box-footer">
                 Mais informações <i class="fas fa-arrow-circle-right"></i>
             </a>
         </div>
