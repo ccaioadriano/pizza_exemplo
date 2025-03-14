@@ -2,6 +2,9 @@
 
 @section('title', 'Clientes')
 
+{{-- Plugins --}}
+@section('plugins.Datatables', true)
+
 @section('content_header')
 <h1>Lista de Clientes</h1>
 @stop
@@ -33,8 +36,7 @@
                             <a href="{{--  --}}" class="btn btn-primary btn-sm">
                                 <i class="fas fa-edit"></i> Editar
                             </a>
-                            <form action="{{--  --}}" method="POST"
-                                style="display:inline;">
+                            <form action="{{--  --}}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm">
@@ -51,21 +53,17 @@
 @stop
 
 @section('css')
-{{-- DataTables CSS --}}
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap4.min.css">
+
+
 @stop
 
 @section('js')
-{{-- jQuery e DataTables JS --}}
-<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap4.min.js"></script>
+
 
 <script>
     $(document).ready(function () {
         $('#clientesTable').DataTable({
-            "language": {
-                "url": "//cdn.datatables.net/plug-ins/1.13.4/i18n/Portuguese-Brasil.json"
-            }
+
         });
     });
 </script>

@@ -11,8 +11,5 @@ class TipoEstabelecimento extends Model
 
     protected $table = 'tipos_estabelecimentos';
 
-    // Define que esta model sempre usará a conexão do banco central
-    protected $connection = 'sqlite';
-
     protected $fillable = ['descricao'];
 }

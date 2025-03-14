@@ -1,7 +1,6 @@
 @extends('adminlte::page')
 
 @section('title', 'Cadastrar Cliente')
-
 @section('content_header')
 <h1 class="text-primary"><i class="fas fa-user-plus"></i> Cadastrar Novo Cliente</h1>
 @stop
@@ -20,7 +19,7 @@
                     <div class="row">
                         {{-- Nome --}}
                         <div class="col-md-6">
-                            <x-adminlte-input name="nome" label="Nome" placeholder="Digite o nome do cliente"
+                            <x-adminlte-input name="name" label="Nome" placeholder="Digite o nome do cliente"
                                 fgroup-class="mb-4">
                                 <x-slot name="prependSlot">
                                     <div class="input-group-text text-lightblue">
@@ -44,29 +43,21 @@
                     </div>
 
                     <div class="row">
-                        {{-- Domínio --}}
-                        <div class="col-md-6">
-                            <x-adminlte-input name="dominio" label="Domínio" placeholder="exemplo.com.br"
-                                fgroup-class="mb-4">
-                                <x-slot name="prependSlot">
-                                    <div class="input-group-text text-success">
-                                        <i class="fas fa-globe"></i>
-                                    </div>
-                                </x-slot>
-                            </x-adminlte-input>
-                        </div>
-
                         {{-- Plano --}}
                         <div class="col-md-6">
                             <x-adminlte-select name="plano" label="Plano" fgroup-class="mb-4">
-                                <x-slot name="prependSlot">
-                                    <div class="input-group-text text-warning">
-                                        <i class="fas fa-list"></i>
-                                    </div>
-                                </x-slot>
                                 <option value="basico">Básico</option>
                                 <option value="intermediario">Intermediário</option>
                                 <option value="avancado">Avançado</option>
+                            </x-adminlte-select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <x-adminlte-select name="tipo_estabelecimento" label="Tipo de estabelecimento"
+                                fgroup-class="mb-4">
+                                @foreach ($tipos_estabelecimentos as $tp)
+                                    <option value="{{ $tp->id }}">{{$tp->descricao}}</option>
+                                @endforeach
                             </x-adminlte-select>
                         </div>
                     </div>

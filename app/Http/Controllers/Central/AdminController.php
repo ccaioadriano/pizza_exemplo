@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Central;
 
 use App\Http\Controllers\Controller;
 use App\Models\Tenant;
+use App\Models\TipoEstabelecimento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 use Stancl\Tenancy\Facades\Tenancy;
 
 class AdminController extends Controller
@@ -16,21 +18,29 @@ class AdminController extends Controller
     }
 
 
-    public function clientes(){
-       return view('core.clientes', ['clientes' => Tenant::all()]);
+    public function clientes()
+    {
+        return view('core.clientes', ['clientes' => Tenant::all()]);
     }
 
 
     public function formTenant(Request $request)
     {
-        return view('core.criar-cliente');
+
+        $tiposEstabelecimentos = TipoEstabelecimento::all();
+
+        return view('core.criar-cliente', ['tipos_estabelecimentos' => $tiposEstabelecimentos]);
     }
 
     public function storeTenant(Request $request)
     {
+
+        $slug = Str::slug(preg_replace('/[0-9]+/', '', $request->name), '-');
+
         $tenant = Tenant::create([
-            'id' => $request->cliente,
+            'id' => $slug,
             'razao_social' => $request->razao_social,
+            'tipo_estabelecimento_id' => $request->tipo_estabelecimento
         ]);
 
         $domain = config('tenancy.tenant.default_domain');
@@ -45,7 +55,7 @@ class AdminController extends Controller
 
         session()->flash('success', 'Cliente criado com sucesso e arquivos gerados!');
 
-        return redirect('/painel');
+        return redirect('admin/dashboard');
     }
 
     private function geraTenantViews($tenantId)

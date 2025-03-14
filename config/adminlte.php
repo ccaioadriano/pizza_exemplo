@@ -301,8 +301,8 @@ return [
     'menu' => [
         [
             'text' => 'Dashboard',
-            'url' => '/dashboard',
-            'icon' => 'fas fa-list', // Ícone de lista
+            'url' => 'admin/dashboard',
+            'icon' => 'fas fa-tachometer-alt', // Ícone de lista
         ],
         [
             'text' => 'Clientes',
@@ -310,12 +310,12 @@ return [
             'submenu' => [
                 [
                     'text' => 'Meus clientes',
-                    'url' => '/meus-clientes',
+                    'url' => 'admin/meus-clientes',
                     'icon' => 'fas fa-list', // Ícone de lista
                 ],
                 [
                     'text' => 'Cadastrar cliente',
-                    'url' => '/clientes/novo',
+                    'url' => 'admin/clientes/novo',
                     'icon' => 'fas fa-user-plus', // Ícone de adicionar cliente
                 ],
             ],
