@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('adminlte::auth.register')
 @section('main')
     <div class="container d-flex justify-content-center align-items-center vh-100">
         <div class="card p-4 shadow-lg" style="max-width: 500px; width: 100%;">

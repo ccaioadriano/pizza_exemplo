@@ -9,7 +9,7 @@ foreach (config('tenancy.central_domains') as $domain) {
 
         Route::get('/', function () {
             if (auth()->check()) {
-                return redirect('/painel');
+                return redirect('/dashboard');
             }
             return redirect('/login');
         });
@@ -22,9 +22,10 @@ foreach (config('tenancy.central_domains') as $domain) {
             return view('auth.register');
         });
 
-        Route::get('/painel', [AdminController::class, 'index'])->middleware('auth')->name('tenants.index');
-        Route::get('/tenants/create', [AdminController::class, 'formTenant'])->name('tenants.create');
-        Route::post('/tenants/store', [AdminController::class, 'storeTenant'])->name('tenants.store');
+        Route::get('/dashboard', [AdminController::class, 'index'])->middleware('auth')->name('dashboard');
+        Route::get('/meus-clientes', [AdminController::class, 'clientes'])->name('tenants.list');
+        Route::get('/clientes/novo', [AdminController::class, 'formTenant'])->name('tenants.create');
+        Route::post('/clientes/store', [AdminController::class, 'storeTenant'])->name('tenants.store');
     });
 }
 require __DIR__ . '/auth.php';

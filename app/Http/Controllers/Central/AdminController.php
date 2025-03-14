@@ -12,7 +12,12 @@ class AdminController extends Controller
 {
     public function index()
     {
-        return view('core.painel', ['tenants' => Tenant::all()]);
+        return view('core.dashboard');
+    }
+
+
+    public function clientes(){
+       return view('core.clientes', ['clientes' => Tenant::all()]);
     }
 
 

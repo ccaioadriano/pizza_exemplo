@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('adminlte::auth.login')
 
 @section('main')
     <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
