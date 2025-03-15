@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Central;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreTenantRequest;
 use App\Models\Tenant;
 use App\Models\TipoEstabelecimento;
 use Illuminate\Http\Request;
@@ -24,7 +25,7 @@ class AdminController extends Controller
     }
 
 
-    public function formTenant(Request $request)
+    public function formTenant()
     {
 
         $tiposEstabelecimentos = TipoEstabelecimento::all();
@@ -32,11 +33,11 @@ class AdminController extends Controller
         return view('core.criar-cliente', ['tipos_estabelecimentos' => $tiposEstabelecimentos]);
     }
 
-    public function storeTenant(Request $request)
+    public function storeTenant(StoreTenantRequest $request)
     {
 
         $slug = Str::slug(preg_replace('/[0-9]+/', '', $request->name), '-');
-
+        
         $tenant = Tenant::create([
             'id' => $slug,
             'razao_social' => $request->razao_social,

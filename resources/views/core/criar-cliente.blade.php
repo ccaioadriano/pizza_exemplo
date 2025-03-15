@@ -13,14 +13,14 @@
                 <h3 class="card-title"><i class="fas fa-edit"></i> Preencha os dados abaixo</h3>
             </div>
             <div class="card-body">
-                <form action="{{route('tenants.store')}}" method="POST">
+                <form action="{{ route('tenants.store') }}" method="POST">
                     @csrf
 
                     <div class="row">
                         {{-- Nome --}}
                         <div class="col-md-6">
                             <x-adminlte-input name="name" label="Nome" placeholder="Digite o nome do cliente"
-                                fgroup-class="mb-4">
+                                fgroup-class="mb-4" value="{{ old('name') }}">
                                 <x-slot name="prependSlot">
                                     <div class="input-group-text text-lightblue">
                                         <i class="fas fa-user"></i>
@@ -32,7 +32,8 @@
                         {{-- Razão Social --}}
                         <div class="col-md-6">
                             <x-adminlte-input name="razao_social" label="Razão Social"
-                                placeholder="Digite a razão social" fgroup-class="mb-4">
+                                placeholder="Digite a razão social" fgroup-class="mb-4"
+                                value="{{ old('razao_social') }}">
                                 <x-slot name="prependSlot">
                                     <div class="input-group-text text-primary">
                                         <i class="fas fa-building"></i>
@@ -46,17 +47,22 @@
                         {{-- Plano --}}
                         <div class="col-md-6">
                             <x-adminlte-select name="plano" label="Plano" fgroup-class="mb-4">
-                                <option value="basico">Básico</option>
-                                <option value="intermediario">Intermediário</option>
-                                <option value="avancado">Avançado</option>
+                                <option value="basico" {{ old('plano') == 'basico' ? 'selected' : '' }}>Básico</option>
+                                <option value="intermediario" {{ old('plano') == 'intermediario' ? 'selected' : '' }}>
+                                    Intermediário</option>
+                                <option value="avancado" {{ old('plano') == 'avancado' ? 'selected' : '' }}>Avançado
+                                </option>
                             </x-adminlte-select>
                         </div>
 
+                        {{-- Tipo de Estabelecimento --}}
                         <div class="col-md-6">
                             <x-adminlte-select name="tipo_estabelecimento" label="Tipo de estabelecimento"
                                 fgroup-class="mb-4">
                                 @foreach ($tipos_estabelecimentos as $tp)
-                                    <option value="{{ $tp->id }}">{{$tp->descricao}}</option>
+                                    <option value="{{ $tp->id }}" {{ old('tipo_estabelecimento') == $tp->id ? 'selected' : '' }}>
+                                        {{ $tp->descricao }}
+                                    </option>
                                 @endforeach
                             </x-adminlte-select>
                         </div>
@@ -64,13 +70,16 @@
 
                     {{-- Email --}}
                     <x-adminlte-input name="email" type="email" label="Email" placeholder="mail@example.com"
-                        fgroup-class="mb-4">
+                        fgroup-class="mb-4" value="{{ old('email') }}">
                         <x-slot name="prependSlot">
                             <div class="input-group-text text-danger">
                                 <i class="fas fa-envelope"></i>
                             </div>
                         </x-slot>
                     </x-adminlte-input>
+                    @error('email')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
 
                     {{-- Botão de Enviar --}}
                     <div class="text-center">
@@ -78,6 +87,7 @@
                             class="btn-lg px-5" />
                     </div>
                 </form>
+
             </div>
         </div>
     </div>
