@@ -16,7 +16,10 @@ class MenuController extends Controller
 
         $menu = Menu::where('tipo_menu', $request->menu)->first() ?? '';
 
+        //dd($menu);
+
         $dados = [
+            'menus' => Menu::all() ?? [],
             'itens' => $menu->items ?? Item::all(),
             'informacoesRestaurante' => [
                 'nome' => 'Sabor & Arte Restaurante',

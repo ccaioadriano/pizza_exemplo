@@ -51,11 +51,22 @@
 
     <!-- Cardápio -->
     <h2 class="text-center mb-4 display-4 text-dark">Nosso Cardápio</h2>
+    <div class="mb-3">
+        <label for="select-menu" class="form-label fw-bold">Escolha um menu</label>
+        <select name="menu" id="select-menu" class="form-select">
+            <option value="">Selecione</option>
+            @foreach($menus as $menu)
+                <option value="{{ $menu->tipo_menu }}" {{ request('menu') == $menu->tipo_menu ? 'selected' : '' }}>
+                    {{ ucfirst($menu->tipo_menu) }}
+                </option>
+            @endforeach
+        </select>
+    </div>
     <ul class="list-group">
         @foreach ($itens as $item)
             <li class="list-group-item d-flex align-items-center p-4 border-0 shadow-sm rounded-3 mb-3">
-                <img src="{{ asset('images/dishes/pizza-classica.png') }}" class="dish-image rounded-3 me-4" alt="{{ $item['titulo'] }}"
-                    style="width: 100px; height: 100px; object-fit: cover;">
+                <img src="{{ asset('images/dishes/pizza-classica.png') }}" class="dish-image rounded-3 me-4"
+                    alt="{{ $item['titulo'] }}" style="width: 100px; height: 100px; object-fit: cover;">
                 <div class="flex-grow-1">
                     <h5 class="fw-bold text-dark">{{ $item['titulo'] }}</h5>
                     <p class="text-muted mb-1">{{ $item['descricao'] }}</p>
@@ -114,4 +125,12 @@
         transition: transform 0.3s ease-in-out;
     }
 </style>
+@stop
+
+@section('js')
+<script>
+    document.getElementById('select-menu').addEventListener('change', function () {
+        window.location.href = '?menu=' + this.value;
+    });
+</script>
 @stop
