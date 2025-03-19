@@ -54,10 +54,10 @@
     <ul class="list-group">
         @foreach ($itens as $item)
             <li class="list-group-item d-flex align-items-center p-4 border-0 shadow-sm rounded-3 mb-3">
-                <img src="{{ asset('images/dishes/pizza-classica.png') }}" class="dish-image rounded-3 me-4" alt="{{ $item['nome'] }}"
+                <img src="{{ asset('images/dishes/pizza-classica.png') }}" class="dish-image rounded-3 me-4" alt="{{ $item['titulo'] }}"
                     style="width: 100px; height: 100px; object-fit: cover;">
                 <div class="flex-grow-1">
-                    <h5 class="fw-bold text-dark">{{ $item['nome'] }}</h5>
+                    <h5 class="fw-bold text-dark">{{ $item['titulo'] }}</h5>
                     <p class="text-muted mb-1">{{ $item['descricao'] }}</p>
                     <span class="h5 text-danger fw-bold">R$ {{ number_format($item['preco'], 2, ',', '.') }}</span>
                 </div>
