@@ -30,7 +30,7 @@
                     <tr>
                         <td>{{ $cliente->id }}</td>
                         <td>{{ $cliente->razao_social }}</td>
-                        <td>{{$cliente->domains()->first()->domain ?? ''}}</td>
+                        <td><a href="http://{{ $cliente->domains()->first()->domain }}:8000" target="_blank">{{$cliente->domains()->first()->domain ?? ''}}</a></td>
                         <td>{{ $cliente->plano ?? 'Grátis' }}</td>
                         <td>
                             <a href="{{--  --}}" class="btn btn-primary btn-sm">

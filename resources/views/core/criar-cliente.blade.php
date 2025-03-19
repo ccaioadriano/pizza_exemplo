@@ -13,7 +13,7 @@
                 <h3 class="card-title"><i class="fas fa-edit"></i> Preencha os dados abaixo</h3>
             </div>
             <div class="card-body">
-                <form action="{{ route('tenants.store') }}" method="POST">
+                <form action="/admin/clientes/store" method="POST">
                     @csrf
 
                     <div class="row">

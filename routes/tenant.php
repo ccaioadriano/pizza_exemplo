@@ -24,7 +24,6 @@ Route::middleware([
     'web',
     InitializeTenancyByDomain::class,
     PreventAccessFromCentralDomains::class,
-    SetTenantView::class
 ])->group(function () {
     Route::get('/', function () {
         return redirect('/menu');

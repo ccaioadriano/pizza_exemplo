@@ -23,10 +23,11 @@ foreach (config('tenancy.central_domains') as $domain) {
         });
 
         Route::middleware(['auth'])->prefix('admin')->group(function () {
-            Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
-            Route::get('/meus-clientes', [AdminController::class, 'clientes'])->name('tenants.list');
-            Route::get('/clientes/novo', [AdminController::class, 'formTenant'])->name('tenants.create');
-            Route::post('/clientes/store', [AdminController::class, 'storeTenant'])->name('tenants.store');
+            Route::get('/dashboard', [AdminController::class, 'index']);
+            Route::get('/meus-clientes', [AdminController::class, 'clientes']);
+            Route::get('/clientes/novo', [AdminController::class, 'formTenant']);
+            Route::post('/clientes/store', [AdminController::class, 'storeTenant']);
+            Route::get('/admin/cliente/{tenant}', [AdminController::class, 'update']);
         });
     });
 }
