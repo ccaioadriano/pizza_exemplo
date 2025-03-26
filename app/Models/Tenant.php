@@ -18,7 +18,8 @@ class Tenant extends BaseTenant implements TenantWithDatabase
         return [
             'id',
             'tipo_estabelecimento_id' ,
-            'razao_social'
+            'razao_social',
+            'email'
         ];
     }
 

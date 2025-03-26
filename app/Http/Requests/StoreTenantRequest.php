@@ -23,7 +23,8 @@ class StoreTenantRequest extends FormRequest
     {
         return [
             'name' => ['required'],
-            'razao_social' => ['required', 'string', 'max:255']
+            'razao_social' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:tenants,email']
         ];
     }
 }

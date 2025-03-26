@@ -27,7 +27,8 @@ foreach (config('tenancy.central_domains') as $domain) {
             Route::get('/meus-clientes', [AdminController::class, 'clientes']);
             Route::get('/clientes/novo', [AdminController::class, 'formTenant']);
             Route::post('/clientes/store', [AdminController::class, 'storeTenant']);
-            Route::get('/admin/cliente/{tenant}', [AdminController::class, 'update']);
+            Route::get('/cliente/{tenant}', [AdminController::class, 'edit']);
+            Route::put('/cliente/{tenant}', [AdminController::class, 'update']);
         });
     });
 }
