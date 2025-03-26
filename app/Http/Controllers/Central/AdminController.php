@@ -101,4 +101,16 @@ class AdminController extends Controller
         }
     }
 
+    public function delete(Tenant $tenant)
+    {
+        try {
+            $tenant->delete();
+            $tenant->domains()->delete();
+            return response()->json(['message' => 'Cliente deletado com sucesso!']);
+        } catch (\Throwable $th) {
+            Log::error('Erro ao deletar cliente: ' . $th->getMessage());
+            return response()->json(['message' => 'Erro ao deletar cliente!'], 500);
+        }
+    }
+
 }

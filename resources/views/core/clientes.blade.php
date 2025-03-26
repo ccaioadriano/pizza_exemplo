@@ -76,7 +76,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: "/admin/cliente/" + clienteId + "/delete",
+                        url: `/admin/cliente/${clienteId}/delete`,
                         type: 'POST',
                         data: {
                             _method: 'DELETE',

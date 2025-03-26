@@ -29,6 +29,7 @@ foreach (config('tenancy.central_domains') as $domain) {
             Route::post('/clientes/store', [AdminController::class, 'storeTenant']);
             Route::get('/cliente/{tenant}', [AdminController::class, 'edit']);
             Route::put('/cliente/{tenant}', [AdminController::class, 'update']);
+            Route::delete('/cliente/{tenant}/delete', [AdminController::class, 'delete']);
         });
     });
 }
